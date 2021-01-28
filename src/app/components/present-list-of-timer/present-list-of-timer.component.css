@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Digital7';
+    src: url('../../fonts/digital-7.ttf');
+}
+
+.time-white {
+    color: white;
+    border-bottom: 1px solid #5E5E5E;
+    width: 100%;
+    padding: 10px 0;
+    height: 2rem;
+}
+
+.time-white:last-child {
+    border-bottom: none;
+}
+
+.time-white:last-child div {
+    padding: 0;
+}
+
+.clock-font {
+    font-size: 20px;
+    text-align: left;
+}
+
+.time-white .clock-font .cloned {
+    opacity: 0.2;
+    top: 0;
+}
+
+.clock-font span {
+    min-width: 10px;
+}
+
+.time-white:hover .remove {
+    display: block;
+}
+
+.remove {
+    position: absolute;
+    right: 30rem;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    border: none;
+    font-size: 11px;
+    display: none;
+}
+
+.clock {
+    position: relative;
+}
+
+.clock-font {
+    font-family: 'Digital7';
+}
+
+.clock-font .cloned {
+    position: absolute;
+    display: table;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    width: 100%;
+}

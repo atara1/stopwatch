@@ -1,0 +1,25 @@
+<div class="container ">
+
+    <div class="timer timer-clock">
+        <span> {{timer.minutes}} <span [ngClass]="{'blink': !isPaused}"> : </span>
+            {{ timer.seconds}} <span [ngClass]="{'blink': !isPaused}"> . </span>
+            {{timer.milliseconds}}</span>
+    </div>
+
+    <div id="button-wrapper" class="container-btn">
+        <div (click)="tooglePlay()" class="play-pause-btn">
+            <span>
+                <i class="fa" [ngClass]="{'fa-play': isPaused, 'fa-pause' : !isPaused}"> </i>
+                {{isPaused ? 'Play': 'Pause'}}
+            </span>
+        </div>
+        <div (click)="addTime()" class="trash-add-btn">
+            <i class="fa fa-clock-o"></i>
+        </div>
+        <div (click)="reset()" class="trash-add-btn">
+            <i class="fa fa-trash-o"></i>
+        </div>
+    </div>
+
+    <app-present-list-of-timer></app-present-list-of-timer>
+</div>
