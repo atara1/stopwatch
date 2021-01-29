@@ -1,10 +1,8 @@
-<div>
-    <div class="time-white" *ngFor="let timer of timerList">
-        <div class="clock-font">
-            <span> {{timer | timer}}</span>
-        </div>
-        <div>
-            <button (click)="removeTime(timer)" class="remove">REMOVE</button>
-        </div>
+<div class="time-white" *ngFor="let timer of listOfTimer">
+    <div class="clock-font">
+        <span> {{timer | timer}}</span>
+    </div>
+    <div>
+        <button (click)="removeTime(timer)" class="remove">REMOVE</button>
     </div>
 </div>

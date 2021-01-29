@@ -21,5 +21,6 @@
         </div>
     </div>
 
-    <app-present-list-of-timer></app-present-list-of-timer>
+    <app-present-list-of-timer [listOfTimer]="listOfTimer" (deleteTimer)="timerToRemove($event)">
+    </app-present-list-of-timer>
 </div>

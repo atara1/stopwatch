@@ -1,7 +1,5 @@
-import { ListTimerService } from './../../services/list-timer.service';
 import { Time, TimerState } from './../../../assets/timeType';
-import { Component, HostListener, Inject, OnDestroy, OnInit } from '@angular/core';
-import { timer } from 'rxjs';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 
 const DEFAULT_TIMER_STATE: TimerState = {
@@ -23,20 +21,19 @@ export class TimerComponent implements OnInit, OnDestroy {
   isPaused = true;
   lastPlayTimestamp: number;
   timer: Time = { minutes: '00', seconds: '00', milliseconds: '00' };
-  constructor(private timerListService: ListTimerService) { }
+  listOfTimer: Time[] = [];
+  constructor() { }
 
   ngOnInit(): void {
-
     this.loadDataFromLocalStorage();
-
     if (!this.isPaused) {
       const lastPlayTimestamp = Date.now() - this.lastPlayTimestamp;
       this.startTimer();
     }
+    console.log(this.isPaused);
   }
 
   startTimer(): void {
-    console.log(this.isPaused);
     const startTime = Date.now() - (this.counter || 0);
     this.timerRef = setInterval(() => {
       this.counter = Date.now() - startTime;
@@ -63,23 +60,46 @@ export class TimerComponent implements OnInit, OnDestroy {
 
 
   addTime(): void {
-    console.log('add');
     const time: Time = { minutes: this.timer.minutes, seconds: this.timer.seconds, milliseconds: this.timer.milliseconds };
-    this.timerListService.addTimer(time);
+    const isTimerFound = this.isTimerExist(time);
+    if (!isTimerFound) {
+      this.listOfTimer.push(time);
+    }
   }
+
+  isTimerExist(time: Time): boolean {
+    const isFound = this.listOfTimer.find(item => {
+      if (item.minutes === time.minutes && item.seconds === time.seconds && item.milliseconds === time.milliseconds) {
+        return item;
+      }
+    });
+    return isFound ? true : false;
+  }
+
+  timerToRemove(timerToRemove): void {
+    const timerList: Time[] = [...this.listOfTimer];
+    timerList.forEach((item, index) => {
+      if (item.minutes === timerToRemove.minutes &&
+        item.seconds === timerToRemove.seconds &&
+        item.milliseconds === timerToRemove.milliseconds) {
+        timerList.splice(index, 1);
+      }
+    });
+    this.listOfTimer = timerList;
+  }
+
   reset(): void {
-    console.log('reset');
     this.pauseWatch();
     this.timer = { ...DEFAULT_TIMER_STATE.currentTime };
     this.counter = DEFAULT_TIMER_STATE.counter;
-    this.timerListService.removeAll();
+    this.listOfTimer = [...DEFAULT_TIMER_STATE.savedTime]; // remove all timers
   }
 
   tooglePlay(): void {
-    console.log('play/pause');
     if (this.isPaused) {
       this.playWatch();
-    } else {
+    }
+    else {
       this.pauseWatch();
     }
   }
@@ -98,26 +118,24 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.startTimer();
   }
 
-
   loadDataFromLocalStorage(): void {
-
     const timeState: TimerState = JSON.parse(localStorage.getItem('timer'))
       || { ...DEFAULT_TIMER_STATE };
     this.timer = timeState.currentTime;
     this.counter = timeState.counter;
     this.isPaused = timeState.isPaused;
     this.lastPlayTimestamp = timeState.lastPlayTimestamp;
+    this.listOfTimer = timeState.savedTime;
   }
 
   saveToLocalStorage(): void {
     const timerState: TimerState = {
       currentTime: this.timer,
-      savedTime: [],
+      savedTime: this.listOfTimer,
       isPaused: this.isPaused,
       counter: this.counter,
       lastPlayTimestamp: Date.now()
     };
-
     localStorage.setItem('timer', JSON.stringify(timerState));
   }
 
