@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Digital7';
+    src: url('./app/fonts/digital-7.mono.ttf');
+}
+
 body {
     background-color: #333333;
 }

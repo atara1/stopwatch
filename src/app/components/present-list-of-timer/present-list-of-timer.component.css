@@ -1,8 +1,3 @@
-@font-face {
-    font-family: 'Digital7';
-    src: url('../../fonts/digital-7.mono.ttf');
-}
-
 .white-time-in-list {
     color: white;
     border-bottom: 1px solid #5E5E5E;
