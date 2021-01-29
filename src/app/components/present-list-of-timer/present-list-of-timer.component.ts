@@ -1,7 +1,5 @@
 import { Time } from './../../../assets/timeType';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { ListTimerService } from './../../services/list-timer.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-present-list-of-timer',
