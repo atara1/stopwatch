@@ -1,4 +1,4 @@
-import { Time, TimerState } from './../../../assets/timeType';
+import { Time, TimerState } from './../../../assets/timerTypes';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 
 const LOCAL_STORAGE_TIMER_KEY = 'timer';

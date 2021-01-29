@@ -1,4 +1,4 @@
-import { Time } from './../../assets/timeType';
+import { Time } from './../../assets/timerTypes';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

@@ -1,4 +1,4 @@
-import { Time } from './../../../assets/timeType';
+import { Time } from './../../../assets/timerTypes';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
