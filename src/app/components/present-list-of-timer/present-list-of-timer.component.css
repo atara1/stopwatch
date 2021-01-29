@@ -24,13 +24,9 @@
     text-align: left;
 }
 
-.white-time-in-list .clock-font .cloned {
+.white-time-in-list .clock-font .time-display {
     opacity: 0.2;
     top: 0;
-}
-
-.clock-font span {
-    min-width: 10px;
 }
 
 .white-time-in-list:hover .remove {
@@ -48,15 +44,11 @@
     display: none;
 }
 
-.clock {
-    position: relative;
-}
-
 .clock-font {
     font-family: 'Digital7';
 }
 
-.clock-font .cloned {
+.clock-font .time-display {
     position: absolute;
     display: table;
     top: 0;
