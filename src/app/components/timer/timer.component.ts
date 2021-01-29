@@ -30,7 +30,6 @@ export class TimerComponent implements OnInit, OnDestroy {
       const lastPlayTimestamp = Date.now() - this.lastPlayTimestamp;
       this.startTimer();
     }
-    console.log(this.isPaused);
   }
 
   startTimer(): void {

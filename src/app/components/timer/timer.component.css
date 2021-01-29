@@ -13,6 +13,10 @@
     padding-top: 2rem;
 }
 
+.text-font {
+    font-family: arial;
+}
+
 .timer {
     font-family: 'Digital7';
     position: relative;
@@ -54,7 +58,7 @@
     margin-right: 5px;
 }
 
-#button-wrapperdiv:last-child {
+#button-wrapper div:last-child {
     border-bottom-right-radius: 10px;
 }
 
