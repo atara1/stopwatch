@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Digital7';
-    src: url('../../fonts/digital-7.ttf');
+    src: url('../../fonts/digital-7.mono.ttf');
 }
 
 .white-time-in-list {
@@ -24,7 +24,7 @@
     text-align: left;
 }
 
-.white-time-in-list .clock-font .time-display {
+.white-time-in-list .clock-font .timer-clock {
     opacity: 0.2;
     top: 0;
 }
@@ -48,7 +48,7 @@
     font-family: 'Digital7';
 }
 
-.clock-font .time-display {
+.clock-font .timer-clock {
     position: absolute;
     display: table;
     top: 0;

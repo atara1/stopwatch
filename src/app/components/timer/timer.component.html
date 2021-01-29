@@ -1,9 +1,8 @@
 <div class="container ">
 
     <div class="timer timer-clock">
-        <span> {{timer.minutes}} <span [ngClass]="{'blink': !isPaused}"> : </span>
-            {{ timer.seconds}} <span [ngClass]="{'blink': !isPaused}"> . </span>
-            {{timer.milliseconds}}</span>
+        <span>{{timer.minutes}}<span [ngClass]="{'blink': !isPaused}">:</span>{{ timer.seconds}}<span
+                [ngClass]="{'blink': !isPaused}">.</span>{{timer.milliseconds}}</span>
     </div>
 
     <div id="button-wrapper" class="container-btn text-font">

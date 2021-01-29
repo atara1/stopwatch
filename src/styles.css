@@ -1,4 +1,16 @@
+body {
+    background-color: #333333;
+}
 
-body{
-    background-color: #242424;
+.timer-clock>span {
+    position: relative;
+    z-index: 1;
+}
+
+.timer-clock>span::before {
+    content: '88:88.88';
+    position: absolute;
+    opacity: 0.2;
+    z-index: -1;
+    white-space: nowrap;
 }
