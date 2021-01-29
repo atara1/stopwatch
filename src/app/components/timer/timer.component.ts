@@ -28,14 +28,22 @@ export class TimerComponent implements OnInit, OnDestroy {
     this.loadDataFromLocalStorage();
     if (!this.isPaused) {
       const lastPlayTimestamp = Date.now() - this.lastPlayTimestamp;
+      this.addTimeAfterUserReturns(lastPlayTimestamp);
       this.startTimer();
     }
   }
 
+  addTimeAfterUserReturns(lastPlayTimestamp: number): void {
+    this.counter += lastPlayTimestamp;
+  }
+
   startTimer(): void {
     const startTime = Date.now() - (this.counter || 0);
+    let lastPlayTimestampToAdd = this.counter;
     this.timerRef = setInterval(() => {
       this.counter = Date.now() - startTime;
+      const counterWithTimestamp = lastPlayTimestampToAdd + this.counter;
+      this.counter = !this.isPaused ? counterWithTimestamp : this.counter;
       this.timer.milliseconds = Math.floor(Math.floor(this.counter % 1000) / 10).toFixed(0);
       this.timer.minutes = (Math.floor(this.counter / 60000)).toString();
       this.timer.seconds = Math.floor(Math.floor(this.counter % 60000) / 1000).toFixed(0);
@@ -54,6 +62,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       } else {
         this.timer.seconds = '' + this.timer.seconds;
       }
+      lastPlayTimestampToAdd = 0;
     }, 10);
   }
 
