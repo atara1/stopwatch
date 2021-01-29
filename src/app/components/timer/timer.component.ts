@@ -89,9 +89,9 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   reset(): void {
     this.pauseWatch();
-    this.timer = { ...DEFAULT_TIMER_STATE.currentTime };
-    this.counter = DEFAULT_TIMER_STATE.counter;
-    this.listOfTimer = [...DEFAULT_TIMER_STATE.savedTime]; // remove all timers
+    this.timer = { minutes: '00', seconds: '00', milliseconds: '00' };
+    this.counter = 0;
+    this.listOfTimer = []; // remove all timers
   }
 
   tooglePlay(): void {
