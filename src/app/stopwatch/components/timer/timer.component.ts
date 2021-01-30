@@ -22,9 +22,11 @@ export class TimerComponent implements OnInit, OnDestroy {
   lastPlayTimestamp: number;
   timer: Time = { minutes: '00', seconds: '00', milliseconds: '00' };
   listOfTimer: Time[] = [];
+  isTimerFound: boolean;
   constructor() { }
 
   ngOnInit(): void {
+    this.isTimerFound = false;
     this.loadDataFromLocalStorage();
     if (!this.isPaused) {
       const lastPlayTimestamp = Date.now() - this.lastPlayTimestamp;
@@ -73,8 +75,8 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   addTimer(): void {
     const time: Time = { minutes: this.timer.minutes, seconds: this.timer.seconds, milliseconds: this.timer.milliseconds };
-    const isTimerFound = this.isTimerExist(time);
-    if (!isTimerFound) {
+    this.isTimerFound = this.isTimerExist(time);
+    if (!this.isTimerFound) {
       this.listOfTimer.push(time);
     }
   }
@@ -101,6 +103,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   resetTimer(): void {
+    this.isTimerFound = false;
     this.pauseTimer();
     this.timer = { minutes: '00', seconds: '00', milliseconds: '00' };
     this.counter = 0;
@@ -117,6 +120,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   }
 
   playTimer(): void {
+    this.isTimerFound = false;
     this.isPaused = false;
     this.calculateTimer();
   }

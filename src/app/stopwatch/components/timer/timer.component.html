@@ -17,7 +17,9 @@
             <i class="fa fa-trash-o"></i>
         </div>
     </div>
-
+    <div *ngIf="isTimerFound" class="error-message text-font">
+        The timer {{timer.minutes}}:{{timer.seconds}}.{{timer.milliseconds}} exists in the list.
+    </div>
     <app-present-list-of-timer [listOfTimer]="listOfTimer" (deleteTimer)="timerToRemove($event)">
     </app-present-list-of-timer>
 </div>
