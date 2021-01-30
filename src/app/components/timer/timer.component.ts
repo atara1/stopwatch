@@ -17,7 +17,7 @@ const DEFAULT_TIMER_STATE: TimerState = {
 })
 export class TimerComponent implements OnInit, OnDestroy {
   counter: number;
-  timerRef: number;
+  timerReference: number;
   isPaused = true;
   lastPlayTimestamp: number;
   timer: Time = { minutes: '00', seconds: '00', milliseconds: '00' };
@@ -40,7 +40,7 @@ export class TimerComponent implements OnInit, OnDestroy {
   calculateTimer(): void {
     const startTime = Date.now() - (this.counter || 0);
     let lastPlayTimestampToAdd = this.counter;
-    this.timerRef = setInterval(() => {
+    this.timerReference = setInterval(() => {
       this.counter = Date.now() - startTime;
       const counterWithLastPlayTimestamp = lastPlayTimestampToAdd + this.counter;
       this.counter = !this.isPaused ? counterWithLastPlayTimestamp : this.counter;
@@ -123,7 +123,7 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   pauseTimer(): void {
     this.isPaused = true;
-    clearInterval(this.timerRef);
+    clearInterval(this.timerReference);
   }
 
   loadDataFromLocalStorage(): void {
